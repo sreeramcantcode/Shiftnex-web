@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: 'BebasNeue';
+  src: url("/fonts/BebasNeue-Regular.otf") format('truetype');
+  font-weight: 200;
+  font-style: normal;
+  font-display:block;
+}
+
+@font-face {
+  font-family: 'leelawadr';
+  src: url("/fonts/leelawadr.ttf") format('truetype');
+  font-weight: 200;
+  font-style: normal;
+  font-display:block;
+}
+
+.heading {
+  font-family: 'BebasNeue';
+}
+
+.sub{
+  font-family : 'leelawadr'
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+
+
+
+
+#root {
+  width: 100%;
+  min-height: 100svh;
+}
+
+.font-display {
+  font-family: "Bebas Neue", sans-serif;
+}
+
+.font-heading {
+  font-family: "Jost", sans-serif;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #000;
+}
+::-webkit-scrollbar-thumb {
+  background: #2a2a2a;
+}
