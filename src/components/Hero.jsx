@@ -10,9 +10,9 @@ export default function Hero() {
   />
 
   <img
-    src="/images/Hero2.png"
+    src="/images/hero2.png"
     alt="overlay"
-    className="absolute left-0 top-0 h-full w-auto z-10"
+    className="absolute hidden lg:block left-0 top-0 h-full w-auto z-10"
   />
 </div>
       <img src="/images/Hero2.png" className="w-full h-full border" alt="" />

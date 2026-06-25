@@ -1,3 +1,27 @@
+"use client";
+
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
+
+/**
+ * Splits a string into an array of <span> chars, preserving spaces
+ * as real spaces (so wrapping/whitespace behaves normally).
+ */
+function splitToChars(text) {
+  return text.split("").map((char, i) => (
+    <span
+      className="char inline-block text-[#1c1c1c]"
+      key={i}
+      style={{ whiteSpace: char === " " ? "pre" : "normal" }}
+    >
+      {char}
+    </span>
+  ));
+}
+
 const socials = [
   {
     name: "Instagram",
@@ -34,16 +58,55 @@ const socials = [
 ];
 
 export default function Footer() {
+  const headingRef = useRef(null);
+
+  useEffect(() => {
+    const el = headingRef.current;
+    if (!el) return;
+
+    const chars = el.querySelectorAll(".char");
+    gsap.set(chars, { color: "#1c1c1c" });
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: el,
+        start: "top 80%",
+        end: "top 20%",
+        // play on enter, do nothing on leave / enter-back / leave-back —
+        // one-shot, never reverses when scrolling back up.
+        toggleActions: "play none none none",
+      },
+    });
+
+    tl.to(chars, {
+      color: "#ffffff",
+      ease: "none",
+      duration: 1,
+      stagger: {
+        each: 1 / chars.length,
+        from: "start",
+      },
+    });
+
+    return () => {
+      tl.scrollTrigger && tl.scrollTrigger.kill();
+      tl.kill();
+    };
+  }, []);
+
   return (
-    <footer className="relative bg-black px-4 sm:px-8 pt-16 sm:pt-20 pb-10 sm:pb-14 overflow-hidden">
-      <div className="max-w-full  mx-auto relative">
-        <img src="images/Rectangle.png" alt="" className="opacity-60 absolute z-0 bottom-0  h-30 w-full " />
-        <h2 className="font-display tracking-tight text-[16vw] sm:text-[12vw] md:text-[20rem] z-2 text-center pb-20 leading-none text-[#1c1c1c] select-none mb-12 sm:mb-16">
-          JOIN THE CLUB
+    <footer className="relative bg-black px-4 sm:px-8 pt-16 sm:pt-20  overflow-hidden">
+      <div className="max-w-full p-4 mx-auto relative">
+        
+        <h2
+          ref={headingRef}
+          className="font-display tracking-tight text-[16vw] sm:text-[12vw] md:text-[20rem] z-2 text-center pb-20 leading-none select-none mb-12 sm:mb-16"
+        >
+          {splitToChars("JOIN THE CLUB")}
         </h2>
         
-
-        <div className="flex gap-4 sm:gap-5 mb-10 sm:mb-12">
+        <div className="mb-24 flex flex-col gap-10">
+        <div className="flex gap-4 sm:gap-5 ">
           {socials.map((s) => (
             <a
               key={s.name}
@@ -76,6 +139,7 @@ export default function Footer() {
             <div className="h-px bg-white/20 w-full" />
             <div className="h-px bg-white/20 w-2/3" />
           </div>
+        </div>
         </div>
 
         <img
