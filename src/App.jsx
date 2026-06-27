@@ -1,3 +1,4 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import Tagline from "./components/Tagline";
@@ -12,8 +13,9 @@ import ImageGrid from "./components/ImageGrid";
 import CoverEveryAngle from "./components/CoverEveryAngle";
 import ManorSection from "./components/ManorSection";
 import Footer from "./components/Footer";
-
-function App() {
+import Terms from "./components/Terms";
+import PrivacyPage from "./components/Privacy";
+function HomePage() {
   return (
     <div className="bg-black min-h-screen">
       <Navbar />
@@ -31,6 +33,18 @@ function App() {
       <ManorSection />
       <Footer />
     </div>
+  );
+}
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/terms" element={<Terms />} />
+        <Route path="/privacy" element={<PrivacyPage></PrivacyPage>} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

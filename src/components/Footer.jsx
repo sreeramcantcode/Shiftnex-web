@@ -1,8 +1,10 @@
-"use client";
+
 
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -132,13 +134,13 @@ export default function Footer() {
           ))}
         </div>
 
-        <div className="max-w-xs">
-          <p className="text-steel text-sm mb-3">Terms and conditions</p>
-          <div className="space-y-3">
-            <div className="h-px bg-white/20 w-full" />
-            <div className="h-px bg-white/20 w-full" />
-            <div className="h-px bg-white/20 w-2/3" />
-          </div>
+        <div className="max-w-xs flex whitespace-nowrap gap-4">
+          <a href="/terms" target="_blank" rel="noopener noreferrer" className="text-steel text-sm mb-3">Terms and conditions</a>
+          <span className="text-white">•</span>
+          <a href="/privacy" target="_blank" rel="noopener noreferrer" className="text-steel text-sm mb-3">Privacy Policy</a>
+          <span className="text-white" >•</span>
+          <a href="/terms" target="_blank" rel="noopener noreferrer" className="text-steel text-sm mb-3">Licensing Agreement</a>
+           
         </div>
         </div>
 
