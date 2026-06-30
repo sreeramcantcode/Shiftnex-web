@@ -3,7 +3,7 @@ export default function ManorSection() {
     <section className="bg-black">
       <div className="relative w-full h-[55vh] sm:h-[65vh] md:h-[110vh] overflow-hidden">
         <img
-          src="/images/manor.png"
+          src="/images/manor.webp"
           alt="Manor house with luxury cars parked outside at dusk"
           className="w-full h-full object-cover z-0"
         />

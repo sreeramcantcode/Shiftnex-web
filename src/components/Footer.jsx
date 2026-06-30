@@ -1,6 +1,6 @@
 
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -59,6 +59,87 @@ const socials = [
   },
 ];
 
+const API_URL = "/api/subscribe";
+
+function NewsletterForm() {
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [status, setStatus] = useState("idle");
+  const [message, setMessage] = useState("");
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    setStatus("loading");
+    setMessage("");
+
+    try {
+      const res = await fetch(API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, name: name.trim() || undefined }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        setStatus("error");
+        setMessage(data.error || "Something went wrong. Try again.");
+        return;
+      }
+
+      setStatus("success");
+      setMessage("You're in! Check your inbox for confirmation.");
+      setEmail("");
+      setName("");
+    } catch {
+      setStatus("error");
+      setMessage("Network error. Please try again.");
+    }
+  }
+
+  return (
+    <div className="max-w-md mx-auto mb-16 px-4 text-center">
+      <h3 className="font-display text-4xl sm:text-5xl text-white mb-2 leading-none">
+        STAY IN THE LOOP
+      </h3>
+      <p className="text-steel text-sm sm:text-base mb-6 max-w-sm mx-auto">
+        Join us and get the latest stories from the automotive world delivered to your inbox.
+      </p>
+      <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+        <input
+          type="text"
+          placeholder="Your name (optional)"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          className="w-full px-4 py-2.5 rounded-xl bg-ghost text-white placeholder-steeldim border border-transparent focus:border-white/20 focus:outline-none transition-colors text-sm"
+        />
+        <div className="flex gap-2">
+          <input
+            type="email"
+            placeholder="Your email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+            className="flex-1 px-4 py-2.5 rounded-xl bg-ghost text-white placeholder-steeldim border border-transparent focus:border-white/20 focus:outline-none transition-colors text-sm"
+          />
+          <button
+            type="submit"
+            disabled={status === "loading"}
+            className="px-5 py-2.5 rounded-xl bg-white text-black font-semibold text-sm hover:scale-[1.02] transition-transform disabled:opacity-60 disabled:cursor-not-allowed whitespace-nowrap"
+          >
+            {status === "loading" ? "SENDING…" : "SUBSCRIBE"}
+          </button>
+        </div>
+        {message && (
+          <p className={`text-xs ${status === "success" ? "text-green-400" : "text-red-400"}`}>
+            {message}
+          </p>
+        )}
+      </form>
+    </div>
+  );
+}
+
 export default function Footer() {
   const headingRef = useRef(null);
 
@@ -101,6 +182,8 @@ export default function Footer() {
         >
           {splitToChars("JOIN THE CLUB")}
         </h2>
+
+        <NewsletterForm />
         
         <div className="mb-24 flex flex-col gap-10">
         <div className="flex gap-4 sm:gap-5 ">
@@ -140,7 +223,7 @@ export default function Footer() {
         </div>
 
         <img
-          src="/images/footerpic.png"
+          src="/images/footerpic.webp"
           alt=""
           aria-hidden="true"
           className="lg:block sm:block absolute -right-8 bottom-0 w-48 sm:w-64 md:w-80  pointer-events-none select-none"

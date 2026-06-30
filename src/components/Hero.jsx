@@ -4,18 +4,18 @@ export default function Hero() {
       
       <div className="relative">
   <img
-    src="/images/Heroimg.png"
+    src="/images/Heroimg.webp"
     alt="Hero car speeding down a road"
     className="w-full h-full object-cover"
   />
 
   <img
-    src="/images/hero2.png"
+    src="/images/hero2.webp"
     alt="overlay"
     className="absolute hidden lg:block left-0 top-0 h-full w-auto z-10"
   />
 </div>
-      <img src="/images/Hero2.png" className="w-full h-full border" alt="" />
+      <img src="/images/Hero2.webp" className="w-full h-full border" alt="" />
       <button
         aria-label="Scroll down"
         onClick={() =>

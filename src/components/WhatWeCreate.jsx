@@ -4,7 +4,7 @@ export default function WhatWeCreate() {
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row-reverse gap-8 md:gap-12 items-start">
         <div className="w-full md:w-2/5 shrink-0">
           <img
-            src="/images/yellow-porsche.png"
+            src="/images/yellow-porsche.webp"
             alt="Yellow sports car driving on a forest road"
             className="w-full h-[320px] sm:h-[420px] md:h-[480px] object-cover rounded-2xl transition-transform duration-500 ease-out hover:scale-[1.03]"
           />

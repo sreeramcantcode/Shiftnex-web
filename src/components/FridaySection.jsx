@@ -3,7 +3,7 @@ export default function FridaySection() {
     <section className="relative w-full p-4 sm:p-8 md:p-20 h-[60vh] sm:h-[70vh] md:h-[80vh] bg-black overflow-hidden">
       <div className="p-4 sm:p-8 md:p-20">
       <img
-        src="/images/fri-car.png"
+        src="/images/fri-car.webp"
         alt="Sports car on a racetrack at golden hour"
         className="absolute inset-0 w-full h-full object-cover"
       />
@@ -43,7 +43,7 @@ export default function FridaySection() {
   }}
 >
   <img 
-    src="/images/10pm.png" 
+    src="/images/10pm.webp" 
     style={{
       position: "absolute",
       left: "47%",
