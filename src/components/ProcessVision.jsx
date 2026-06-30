@@ -19,15 +19,13 @@ export default function ProcessVision() {
       gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "top 50%",   
-          end: "bottom 100%",
-          duration:1,
+          start: "top bottom",
+          end: "bottom top",
           scrub: 1,           
         },
       })
-        .to(theRef.current, { color: "#ffffff", ease: "none" }, 0)
-        .to(processRef.current, { color: "#ffffff", ease: "none" }, 0)
-        .to(visionRef.current, { color: "#ffffff", ease: "none" }, 0);
+        .to([theRef.current, processRef.current, visionRef.current], { color: "#9a9a9a", ease: "none" })
+        .to([theRef.current, processRef.current, visionRef.current], { color: "#1c1c1c", ease: "none" });
     }, sectionRef);
 
     return () => ctx.revert(); // cleanup on unmount / fast refresh
@@ -43,6 +41,10 @@ export default function ProcessVision() {
           <span
             ref={theRef}
             className="font-display left-0 -mt-10 text-[20vw] tracking-tighter sm:text-[15vw] md:text-[10rem] lg:text-[40rem] text-[#1c1c1c] select-none"
+            style={{
+              WebkitMaskImage: "linear-gradient(to bottom, black 55%, transparent 100%)",
+              maskImage: "linear-gradient(to bottom, black 55%, transparent 100%)",
+            }}
           >
             THE
           </span>
@@ -51,6 +53,10 @@ export default function ProcessVision() {
             <span
               ref={processRef}
               className="font-display text-[13vw] sm:text-[10vw] tracking-tighter md:text-[6.5rem] lg:text-[17rem] text-[#262626] select-none ml-2 sm:ml-4"
+              style={{
+                WebkitMaskImage: "linear-gradient(to bottom, black 55%, transparent 100%)",
+                maskImage: "linear-gradient(to bottom, black 55%, transparent 100%)",
+              }}
             >
               PROCESS
             </span>
@@ -59,14 +65,13 @@ export default function ProcessVision() {
               <span
                 ref={visionRef}
                 className="font-display text-[16vw] tracking-tighter sm:text-[12vw] md:text-[8rem] lg:text-[23rem] text-[#262626] select-none"
+                style={{
+                  WebkitMaskImage: "linear-gradient(to bottom, black 55%, transparent 100%)",
+                  maskImage: "linear-gradient(to bottom, black 55%, transparent 100%)",
+                }}
               >
                 VISION
               </span>
-              <img
-                src="images/Rectangle.png"
-                alt=""
-                className="opacity-95 left-16 absolute bottom-12 h-40 w-full"
-              />
             </div>
           </div>
         </div>

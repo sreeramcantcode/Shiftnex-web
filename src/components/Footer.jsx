@@ -72,23 +72,14 @@ export default function Footer() {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: el,
-        start: "top 80%",
-        end: "top 20%",
-        // play on enter, do nothing on leave / enter-back / leave-back —
-        // one-shot, never reverses when scrolling back up.
-        toggleActions: "play none none none",
+        start: "top bottom",
+        end: "bottom top",
+        scrub: 1,
       },
     });
 
-    tl.to(chars, {
-      color: "#ffffff",
-      ease: "none",
-      duration: 1,
-      stagger: {
-        each: 1 / chars.length,
-        from: "start",
-      },
-    });
+    tl.to(chars, { color: "#ffffff", textShadow: "0 0 30px rgba(255,255,255,0.6)", ease: "none" });
+    tl.to(chars, { color: "#1c1c1c", textShadow: "0 0 0px rgba(255,255,255,0)", ease: "none" });
 
     return () => {
       tl.scrollTrigger && tl.scrollTrigger.kill();
@@ -103,6 +94,10 @@ export default function Footer() {
         <h2
           ref={headingRef}
           className="font-display tracking-tight text-[16vw] sm:text-[12vw] md:text-[20rem] z-2 text-center pb-20 leading-none select-none mb-12 sm:mb-16"
+          style={{
+            WebkitMaskImage: "linear-gradient(to bottom, black 55%, transparent 100%)",
+            maskImage: "linear-gradient(to bottom, black 55%, transparent 100%)",
+          }}
         >
           {splitToChars("JOIN THE CLUB")}
         </h2>
@@ -134,11 +129,11 @@ export default function Footer() {
           ))}
         </div>
 
-        <div className="max-w-xs flex whitespace-nowrap gap-4">
+        <div className="flex flex-wrap gap-x-4 gap-y-1">
           <a href="/terms" target="_blank" rel="noopener noreferrer" className="text-steel text-sm mb-3">Terms and conditions</a>
-          <span className="text-white">•</span>
+          <span className="text-white hidden sm:inline">•</span>
           <a href="/privacy" target="_blank" rel="noopener noreferrer" className="text-steel text-sm mb-3">Privacy Policy</a>
-          <span className="text-white" >•</span>
+          <span className="text-white hidden sm:inline">•</span>
           <a href="/terms" target="_blank" rel="noopener noreferrer" className="text-steel text-sm mb-3">Licensing Agreement</a>
            
         </div>
