@@ -15,6 +15,7 @@ import ManorSection from "./components/ManorSection";
 import Footer from "./components/Footer";
 import Terms from "./components/Terms";
 import PrivacyPage from "./components/Privacy";
+import CookieConsent from "./components/CookieConsent";
 function HomePage() {
   return (
     <div className="bg-black min-h-screen">
@@ -44,6 +45,7 @@ function App() {
         <Route path="/terms" element={<Terms />} />
         <Route path="/privacy" element={<PrivacyPage></PrivacyPage>} />
       </Routes>
+      <CookieConsent />
     </BrowserRouter>
   );
 }
