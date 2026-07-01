@@ -1,6 +1,6 @@
 
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -59,6 +59,87 @@ const socials = [
   },
 ];
 
+const API_URL = "/api/subscribe";
+
+function NewsletterForm() {
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [status, setStatus] = useState("idle");
+  const [message, setMessage] = useState("");
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    setStatus("loading");
+    setMessage("");
+
+    try {
+      const res = await fetch(API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, name: name.trim() || undefined }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        setStatus("error");
+        setMessage(data.error || "Something went wrong. Try again.");
+        return;
+      }
+
+      setStatus("success");
+      setMessage("You're in! Check your inbox for confirmation.");
+      setEmail("");
+      setName("");
+    } catch {
+      setStatus("error");
+      setMessage("Network error. Please try again.");
+    }
+  }
+
+  return (
+    <div className="max-w-md mx-auto mb-16 px-4 text-center">
+      <h3 className="font-display text-4xl sm:text-5xl text-white mb-2 leading-none">
+        STAY IN THE LOOP
+      </h3>
+      <p className="text-steel text-sm sm:text-base mb-6 max-w-sm mx-auto">
+        Join us and get the latest stories from the automotive world delivered to your inbox.
+      </p>
+      <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+        <input
+          type="text"
+          placeholder="Your name (optional)"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          className="w-full px-4 py-2.5 rounded-xl bg-ghost text-white placeholder-steeldim border border-transparent focus:border-white/20 focus:outline-none transition-colors text-sm"
+        />
+        <div className="flex gap-2">
+          <input
+            type="email"
+            placeholder="Your email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+            className="flex-1 px-4 py-2.5 rounded-xl bg-ghost text-white placeholder-steeldim border border-transparent focus:border-white/20 focus:outline-none transition-colors text-sm"
+          />
+          <button
+            type="submit"
+            disabled={status === "loading"}
+            className="px-5 py-2.5 rounded-xl bg-white text-black font-semibold text-sm hover:scale-[1.02] transition-transform disabled:opacity-60 disabled:cursor-not-allowed whitespace-nowrap"
+          >
+            {status === "loading" ? "SENDING…" : "SUBSCRIBE"}
+          </button>
+        </div>
+        {message && (
+          <p className={`text-xs ${status === "success" ? "text-green-400" : "text-red-400"}`}>
+            {message}
+          </p>
+        )}
+      </form>
+    </div>
+  );
+}
+
 export default function Footer() {
   const headingRef = useRef(null);
 
@@ -72,23 +153,14 @@ export default function Footer() {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: el,
-        start: "top 80%",
-        end: "top 20%",
-        // play on enter, do nothing on leave / enter-back / leave-back —
-        // one-shot, never reverses when scrolling back up.
-        toggleActions: "play none none none",
+        start: "top bottom",
+        end: "bottom top",
+        scrub: 1,
       },
     });
 
-    tl.to(chars, {
-      color: "#ffffff",
-      ease: "none",
-      duration: 1,
-      stagger: {
-        each: 1 / chars.length,
-        from: "start",
-      },
-    });
+    tl.to(chars, { color: "#ffffff", textShadow: "0 0 30px rgba(255,255,255,0.6)", ease: "none" });
+    tl.to(chars, { color: "#1c1c1c", textShadow: "0 0 0px rgba(255,255,255,0)", ease: "none" });
 
     return () => {
       tl.scrollTrigger && tl.scrollTrigger.kill();
@@ -103,9 +175,15 @@ export default function Footer() {
         <h2
           ref={headingRef}
           className="font-display tracking-tight text-[16vw] sm:text-[12vw] md:text-[20rem] z-2 text-center pb-20 leading-none select-none mb-12 sm:mb-16"
+          style={{
+            WebkitMaskImage: "linear-gradient(to bottom, black 55%, transparent 100%)",
+            maskImage: "linear-gradient(to bottom, black 55%, transparent 100%)",
+          }}
         >
           {splitToChars("JOIN THE CLUB")}
         </h2>
+
+        <NewsletterForm />
         
         <div className="mb-24 flex flex-col gap-10">
         <div className="flex gap-4 sm:gap-5 ">
@@ -134,18 +212,18 @@ export default function Footer() {
           ))}
         </div>
 
-        <div className="max-w-xs flex whitespace-nowrap gap-4">
+        <div className="flex flex-wrap gap-x-4 gap-y-1">
           <a href="/terms" target="_blank" rel="noopener noreferrer" className="text-steel text-sm mb-3">Terms and conditions</a>
-          <span className="text-white">•</span>
+          <span className="text-white hidden sm:inline">•</span>
           <a href="/privacy" target="_blank" rel="noopener noreferrer" className="text-steel text-sm mb-3">Privacy Policy</a>
-          <span className="text-white" >•</span>
+          <span className="text-white hidden sm:inline">•</span>
           <a href="/terms" target="_blank" rel="noopener noreferrer" className="text-steel text-sm mb-3">Licensing Agreement</a>
            
         </div>
         </div>
 
         <img
-          src="/images/footerpic.png"
+          src="/images/footerpic.webp"
           alt=""
           aria-hidden="true"
           className="lg:block sm:block absolute -right-8 bottom-0 w-48 sm:w-64 md:w-80  pointer-events-none select-none"

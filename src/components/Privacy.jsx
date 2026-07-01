@@ -145,41 +145,34 @@ export default function PrivacyPage() {
           </ul>
         </Section>
 
-        <Section number="5" title="Newsletter Delivery Service Providers">
+        <Section number="5" title="Newsletter Delivery Service Provider">
           <p className="mb-4">
-            To deliver the Newsletter, we use a third-party email service
-            provider ("ESP") to store subscriber information and send daily
-            emails. As of the date of this Policy, we have not finalized our
-            selection of an ESP. Once an ESP is selected, this section will
-            be updated to name the specific provider and link to that
-            provider's own privacy policy.
+            To deliver the Newsletter, we use{" "}
+            <a
+              href="https://www.mailerlite.com/legal/privacy-policy"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#d8c9c0] underline hover:text-white transition-colors"
+            >
+              MailerLite
+            </a>{" "}
+            as our email service provider ("ESP") to store subscriber
+            information and send daily emails. MailerLite processes your
+            name and email address on our behalf solely for the purpose of
+            delivering the Newsletter.
           </p>
           <p className="mb-4">
-            Regardless of which ESP we select, the following commitments
-            apply:
+            MailerLite may use tracking technologies in the emails it sends
+            on our behalf, including open tracking and click tracking, to
+            help us measure engagement.
           </p>
-          <ul className="list-disc list-outside ml-5 space-y-2">
-            <li>
-              The ESP will process your name and email address only on our
-              behalf and only for the purpose of delivering the Newsletter.
-            </li>
-            <li>
-              The ESP will be a reputable, established email service
-              provider with its own published privacy and security
-              practices.
-            </li>
-            <li>
-              We will not select an ESP that uses subscriber data for its
-              own independent marketing purposes.
-            </li>
-            <li>
-              The ESP may be located outside your country of residence,
-              including in jurisdictions with different data protection laws
-              than your own. Where required by applicable law, we will take
-              reasonable steps to ensure adequate protection of your data in
-              such transfers.
-            </li>
-          </ul>
+          <p>
+            MailerLite is located outside your country of residence,
+            including in jurisdictions with different data protection laws
+            than your own. Where required by applicable law, we take
+            reasonable steps to ensure adequate protection of your data in
+            such transfers.
+          </p>
         </Section>
 
         <Section number="6" title="Data Storage and Security">
@@ -268,14 +261,25 @@ export default function PrivacyPage() {
           </p>
         </Section>
 
-        <Section number="10" title="Cookies">
-          <p>
+        <Section number="10" title="Cookies &amp; Tracking Technologies">
+          <p className="mb-4">
             The Site may use minimal, essential cookies required for the
             Site to function correctly (for example, remembering that you
-            submitted the subscription form). The Site does not currently
-            use third-party advertising or tracking cookies. If this changes
-            in the future, this Policy will be updated accordingly and,
-            where required by law, your consent will be requested.
+            submitted the subscription form).
+          </p>
+          <p className="mb-4">
+            We use MailerLite as our email service provider to send the
+            Newsletter. MailerLite may use tracking technologies in the
+            emails we send, including open tracking (detecting when an
+            email is opened) and click tracking (recording which links are
+            clicked). This helps us understand engagement with the
+            Newsletter and improve its content.
+          </p>
+          <p>
+            The Site does not currently use third-party advertising or
+            tracking cookies on the Site itself. If this changes in the
+            future, this Policy will be updated accordingly and, where
+            required by law, your consent will be requested.
           </p>
         </Section>
 
@@ -299,7 +303,7 @@ export default function PrivacyPage() {
             at:
           </p>
           <ul className="list-disc list-outside ml-5 space-y-2 mb-4">
-            <li>Email: [Insert Contact Email]</li>
+            <li>Email: shiftnexmediaofficial@gmail.com</li>
             <li>Instagram: @shiftnexmedia</li>
           </ul>
           <p>

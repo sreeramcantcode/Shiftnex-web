@@ -4,16 +4,16 @@ export default function WhatWeCreate() {
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row-reverse gap-8 md:gap-12 items-start">
         <div className="w-full md:w-2/5 shrink-0">
           <img
-            src="/images/yellow-porsche.png"
+            src="/images/yellow-porsche.webp"
             alt="Yellow sports car driving on a forest road"
-            className="w-full h-[320px] sm:h-[420px] md:h-[480px] object-cover rounded-2xl"
+            className="w-full h-[320px] sm:h-[420px] md:h-[480px] object-cover rounded-2xl transition-transform duration-500 ease-out hover:scale-[1.03]"
           />
         </div>
         <div className="w-full md:w-3/5">
           <h2 className="heading font-extrabold text-3xl sm:text-4xl md:text-5xl text-white mb-6 tracking-wide">
             WHAT WE CREATE
           </h2>
-          <p className="text-steel sub text-base sm:text-2xl leading-relaxed text-justify">
+          <p className="text-steel sub text-base sm:text-2xl leading-relaxed text-left sm:text-justify">
             From cinematic visuals and editorial features to social
             campaigns and digital commercials, we create automotive content
             designed to leave a lasting impression. Every project is shaped

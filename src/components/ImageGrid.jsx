@@ -1,7 +1,7 @@
 const images = [
-  { src: "/images/grid-f1.png", alt: "Formula 1 car racing on track" },
-   { src: "/images/grid-hypercar.png", alt: "Green GT3 race car on a circuit" },
-  { src: "/images/grid-gt3.png", alt: "Green GT3 race car on a circuit" },
+  { src: "/images/grid-f1.webp", alt: "Formula 1 car racing on track" },
+   { src: "/images/grid-hypercar.webp", alt: "Green GT3 race car on a circuit" },
+  { src: "/images/grid-gt3.webp", alt: "Green GT3 race car on a circuit" },
  
 ];
 
@@ -14,7 +14,7 @@ export default function ImageGrid() {
             key={img.src}
             src={img.src}
             alt={img.alt}
-            className="w-full h-[280px] sm:h-[420px] md:h-[460px] object-cover rounded-xl"
+            className="w-full h-[280px] sm:h-[420px] md:h-[460px] object-cover rounded-xl transition-transform duration-500 ease-out hover:scale-[1.03]"
           />
         ))}
       </div>
