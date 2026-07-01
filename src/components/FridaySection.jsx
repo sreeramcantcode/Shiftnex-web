@@ -13,7 +13,7 @@ export default function FridaySection() {
   style={{
     position: "absolute",
     left: "280px",
-    top: "55%",
+    top: "57%",
     transform: "translateY(-50%)",
     display: "flex",
     alignItems: "center",
